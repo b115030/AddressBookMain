@@ -21,10 +21,10 @@ class Person {
         person_zipcode = readIn.next();
         System.out.println("Enter the Phone Number ");
         person_phone = readIn.next();
-        List <List <String> > personData = Arrays.asList(
+        List < List < String >> personData = Arrays.asList(
             Arrays.asList(person_firstName, person_lastName, person_houseNumber, person_city, person_state, person_zipcode, person_phone)
         );
-        FileWriter csvWriter = new FileWriter("src/CSVFiles/AddressBook.csv");
+        FileWriter csvWriter = new FileWriter("src/CSVFiles/AddressBook.csv", true);
         for (List < String > rowData: personData) {
             csvWriter.append(String.join(",", rowData));
             csvWriter.append("\n");
