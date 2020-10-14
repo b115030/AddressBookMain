@@ -86,4 +86,44 @@ public class Utils {
         reader.close();
         writer.close();
     }
+
+    public void deletePerson() throws IOException {
+        String updateLine = "", newString = "", splitBy = ",", oldContent = "", nextLine = "", line = "nope";
+        //Open AddressBook.csv
+        BufferedReader reader = new BufferedReader(new FileReader("src/CSVFiles/AddressBook.csv"));
+
+        System.out.println("Enter the Person Serial you want to Delete");
+        int lineNumber = readIn.nextInt();
+        //Iterate over all lines and create one string of all
+        String allLines = reader.readLine();
+        while (allLines != null) {
+            oldContent = oldContent + allLines + System.lineSeparator();
+            allLines = reader.readLine();
+        }
+        //Go to the line number specified by user
+        BufferedReader read = new BufferedReader(new FileReader("src/CSVFiles/AddressBook.csv"));
+        for (int i = 0; line != null; i++) {
+            line = read.readLine();
+            if (i >= lineNumber && line != null) {
+                updateLine = updateLine + line + System.lineSeparator();
+            }
+        }
+        BufferedReader readin = new BufferedReader(new FileReader("src/CSVFiles/AddressBook.csv"));
+        for (int j = 0; j != lineNumber; j++) {
+            nextLine = readin.readLine();
+        }
+        nextLine = readin.readLine();
+        nextLine = readin.readLine();
+        while (nextLine != null) {
+            newString = newString + nextLine + System.lineSeparator();
+            nextLine = readin.readLine();
+        }
+        String newContent = oldContent.replace(updateLine, newString);
+        System.out.println("Person " + lineNumber + " Deleted");
+        FileWriter writer = new FileWriter("src/CSVFiles/AddressBook.csv");
+        //Write the whole string again
+        writer.write(newContent);
+        reader.close();
+        writer.close();
+    }
 }

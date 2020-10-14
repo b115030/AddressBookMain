@@ -15,7 +15,7 @@ public class AddressBookMain {
         Scanner readIn = new Scanner(System.in);
         try {
             Utils util = new Utils();
-            System.out.println("1. To add a new person \n2. To update a person \n3. Exit");
+            System.out.println("1. To add a new person \n2. To update a person \n3. Delete a Person \n4. Exit");
             option = readIn.nextInt();
             switch (option) {
                 case 1:
@@ -27,8 +27,13 @@ public class AddressBookMain {
                     util.updatePerson();
                     util.showAddressBook();
                     break;
-
                 case 3:
+                	util.showAddressBook();
+                	util.deletePerson();
+                	util.showAddressBook();
+                	break;
+                
+                case 4:
                     break;
 
             }
