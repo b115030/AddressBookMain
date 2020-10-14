@@ -146,4 +146,26 @@ public class Utils {
         }
         return false;
     }
+    public void sortByName() {
+        String line = "";
+        String cvsSplitBy = ",";
+        List < List < String >> personData = new ArrayList < > ();
+        try (BufferedReader br = new BufferedReader(new FileReader("src/CSVFiles/AddressBook.csv"))) {
+            while ((line = br.readLine()) != null) {
+                personData.add(Arrays.asList(line.split(cvsSplitBy)));
+            }
+            personData.sort(new Comparator < List < String >> () {
+                public int compare(List < String > list1, List < String > list2) {
+                    return list1.get(1).compareTo(list2.get(1));
+                }
+            });
+            for (List < String > rowData: personData) {
+                System.out.println(rowData);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Sorted by last Name");
+    }
 }
