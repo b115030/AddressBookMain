@@ -1,3 +1,6 @@
+/*
+ * Person class to create a Person
+ */
 package AddressBook;
 
 import java.util.*;
