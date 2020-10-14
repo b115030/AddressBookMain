@@ -126,4 +126,24 @@ public class Utils {
         reader.close();
         writer.close();
     }
+    public boolean equals(String firstName, String lastName) {
+        String line = "";
+        String splitBy = ",";
+        try {
+            //parsing a CSV file into BufferedReader class constructor  
+            BufferedReader bufferead = new BufferedReader(new FileReader("src/CSVFiles/AddressBook.csv"));
+
+            while ((line = bufferead.readLine()) != null) {
+                String[] personData = line.split(splitBy); // use comma as separator  
+                if (personData[0].equals(firstName) && personData[1].equals(lastName)) {
+                    System.out.println("Duplicate found");
+                    return true;
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

@@ -7,13 +7,18 @@ import java.util.*;
 import java.io.*;
 
 class Person {
+	boolean e = true;
     String person_firstName, person_lastName, person_houseNumber, person_city, person_state, person_phone, person_zipcode;
     Scanner readIn = new Scanner(System.in);
+    Utils util = new Utils();
     Person() throws IOException {
-        System.out.println("Enter the First Name of the Person");
-        person_firstName = readIn.next();
-        System.out.println("Enter the Last Name of the Person");
-        person_lastName = readIn.next();
+        while(e) {
+        	System.out.println("Enter the First Name of the Person");        
+        	person_firstName = readIn.next();
+        	System.out.println("Enter the Last Name of the Person");
+        	person_lastName = readIn.next();
+        	e = util.equals(person_firstName, person_lastName);
+        }
         System.out.println("Enter the House Number");
         person_houseNumber = readIn.next();
         System.out.println("Enter the Nameo of the City");
