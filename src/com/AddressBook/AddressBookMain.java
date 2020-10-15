@@ -16,7 +16,7 @@ public class AddressBookMain {
             Utils util = new Utils();
             while(true) {
             	boolean Flag=true;
-            	System.out.println("1. To add a new person \n2. To update a person \n3. Delete a Person \n4. Sort by Last Name \n5. Exit");
+            	System.out.println("1. To add a new person \n2. To update a person \n3. Delete a Person \n4. Sort Contacts \n5. Exit");
             	option = readIn.nextInt();
             	switch (option) {
                 	case 1:
@@ -34,7 +34,8 @@ public class AddressBookMain {
                 		util.showAddressBook();
                 		break;
                 	case 4:
-                		util.sortByName();
+                		util.sortContacts();
+                		break;
                 	case 5:
                 		Flag=false;
                 		break;

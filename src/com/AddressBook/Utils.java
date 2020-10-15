@@ -146,19 +146,37 @@ public class Utils {
         }
         return false;
     }
-    public void sortByName() {
+    public void sortContacts() {
+        int option;
+        while (true) {
+            System.out.println("What do you want to sort by \n1. Last Name \n3. City \n4. State\n5. Zip Code");
+            option = readIn.nextInt();
+            if (!(option < 1 || option > 4 || option == 2)) {
+                System.out.println("Invalid");
+                break;
+            }
+        }
+
         String line = "";
         String cvsSplitBy = ",";
         List < List < String >> personData = new ArrayList < > ();
+        switch (option) {
+
+        }
         try (BufferedReader br = new BufferedReader(new FileReader("src/CSVFiles/AddressBook.csv"))) {
             while ((line = br.readLine()) != null) {
                 personData.add(Arrays.asList(line.split(cvsSplitBy)));
             }
             personData.sort(new Comparator < List < String >> () {
+                int option2;
                 public int compare(List < String > list1, List < String > list2) {
-                    return list1.get(1).compareTo(list2.get(1));
+                    return list1.get(option2).compareTo(list2.get(option2));
                 }
-            });
+                public Comparator init(int option) {
+                    option2 = option;
+                    return this;
+                }
+            }.init(option));
             for (List < String > rowData: personData) {
                 System.out.println(rowData);
             }
@@ -166,6 +184,6 @@ public class Utils {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Sorted by last Name");
+        System.out.println("Sorted");
     }
 }
