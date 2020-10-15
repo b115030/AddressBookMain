@@ -16,11 +16,11 @@ public class AddressBookMain {
             Utils util = new Utils();
             while(true) {
             	boolean Flag=true;
-            	System.out.println("1. To add a new person \n2. To update a person \n3. Delete a Person \n4. Sort Contacts \n5. Exit");
+            	System.out.println("1. To add a new person \n2. To update a person \n3. Delete a Person \n4. Sort Contacts \n5. View Person by City or State \n6. Exit");
             	option = readIn.nextInt();
             	switch (option) {
                 	case 1:
-                		Person person = new Person();
+                		new Person();
                 		util.showAddressBook();
                 		break;
                 	case 2:
@@ -37,10 +37,12 @@ public class AddressBookMain {
                 		util.sortContacts();
                 		break;
                 	case 5:
+                		util.viewPersonDictionary();
+                	case 6:
                 		Flag=false;
                 		break;
             	}
-            	if (Flag==false)
+            	if (Flag == false)
             		break;
             }
         } catch (IOException e) {

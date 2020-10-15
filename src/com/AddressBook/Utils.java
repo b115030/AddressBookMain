@@ -186,4 +186,44 @@ public class Utils {
         }
         System.out.println("Sorted");
     }
+
+    public void viewPersonDictionary() {
+        Dictionary viewPersonByCity = new Hashtable();
+        Dictionary viewPersonByState = new Hashtable();
+        String line = "";
+        String splitBy = ",";
+        try {
+            //parsing a CSV file into BufferedReader class constructor  
+            BufferedReader bufferead = new BufferedReader(new FileReader("src/CSVFiles/AddressBook.csv"));
+
+            while ((line = bufferead.readLine()) != null) {
+                String[] personData = line.split(splitBy); // use comma as separator  
+                viewPersonByCity.put(personData[3], personData[0] + " " + personData[1]);
+                viewPersonByState.put(personData[4], personData[0] + " " + personData[1]);
+
+            }
+            System.out.println(viewPersonByCity);
+            System.out.println(viewPersonByState);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("1. View Person By State \n2. View Person By City");
+        int choice = readIn.nextInt();
+        if (choice == 1) {
+            for (Enumeration i = viewPersonByState.keys(); i.hasMoreElements();) {
+                String keys = i.nextElement().toString();
+                System.out.print("State : " + keys);
+                System.out.println(" Person : " + viewPersonByState.get(keys));
+            }
+        }
+        if (choice == 2) {
+            for (Enumeration i = viewPersonByCity.keys(); i.hasMoreElements();) {
+                String keys = i.nextElement().toString();
+                System.out.print("City : " + keys);
+                System.out.println(" Person : " + viewPersonByCity.get(keys));
+            }
+        } else
+            System.out.println("Invalid");
+    }
+
 }
