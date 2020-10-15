@@ -8,6 +8,9 @@ import java.io.*;
 
 public class Utils {
     Scanner readIn = new Scanner(System.in);
+    /*
+     * Prints the Person Details stored in CSV
+     */
     public void showAddressBook() {
         String line = "";
         String splitBy = ",";
@@ -22,6 +25,10 @@ public class Utils {
             e.printStackTrace();
         }
     }
+    /*
+     * Edits Person details and writes into the file
+     * @throws IOExcetion
+     */
     public void updatePerson() throws IOException {
         String updateLine, newAddress = "", newString = "", splitBy = ",", oldContent = "", newCity = "", newState = "", newZipcode = "", newPhone = "";
         //Open AddressBook.csv
@@ -84,7 +91,10 @@ public class Utils {
         reader.close();
         writer.close();
     }
-
+    /*
+     * Deletes all the details of a Person from file
+     * @throws IOException
+     */
     public void deletePerson() throws IOException {
         String updateLine = "", newString = "", splitBy = ",", oldContent = "", nextLine = "", line = "nope";
         //Open AddressBook.csv
@@ -123,6 +133,11 @@ public class Utils {
         reader.close();
         writer.close();
     }
+    /*
+     * Overrides equals method
+     * @params firstName, lastName
+     * returns boolean
+     */
     public boolean equals(String firstName, String lastName) {
         String line = "";
         String splitBy = ",";
@@ -141,6 +156,9 @@ public class Utils {
         }
         return false;
     }
+    /*
+     * Sorts Person by Last Name, City, State or Zipcode
+     */
     public void sortContacts() {
         int option;
         while (true) {
@@ -176,7 +194,9 @@ public class Utils {
         }
         System.out.println("Sorted");
     }
-
+    /*
+     * Prints Person and their corresponding states or cities
+     */
     public void viewPersonDictionary() {
         Dictionary viewPersonByCity = new Hashtable();
         Dictionary viewPersonByState = new Hashtable();
@@ -213,7 +233,9 @@ public class Utils {
         } else
             System.out.println("Invalid");
     }
-
+    /*
+     * Searches for Person in a city or state
+     */
     public void searchPerson() {
 
         int option = 0, flag = 0;
