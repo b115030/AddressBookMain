@@ -16,7 +16,7 @@ public class AddressBookMain {
             Utils util = new Utils();
             while(true) {
             	boolean Flag=true;
-            	System.out.println("1. To add a new person \n2. To update a person \n3. Delete a Person \n4. Sort Contacts \n5. View Person by City or State \n6. Exit");
+            	System.out.println("1. To add a new person \n2. To update a person \n3. Delete a Person \n4. Sort Contacts \n5. View Person by City or State \n6. Search Person \n7. Exit");
             	option = readIn.nextInt();
             	switch (option) {
                 	case 1:
@@ -38,7 +38,11 @@ public class AddressBookMain {
                 		break;
                 	case 5:
                 		util.viewPersonDictionary();
+                		break;
                 	case 6:
+                		util.searchPerson();
+                		break;
+                	case 7:
                 		Flag=false;
                 		break;
             	}
@@ -48,6 +52,5 @@ public class AddressBookMain {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }

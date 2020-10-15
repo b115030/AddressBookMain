@@ -14,7 +14,6 @@ public class Utils {
         try {
             //parsing a CSV file into BufferedReader class constructor  
             BufferedReader bufferead = new BufferedReader(new FileReader("src/CSVFiles/AddressBook.csv"));
-
             while ((line = bufferead.readLine()) != null) {
                 String[] personData = line.split(splitBy); // use comma as separator  
                 System.out.println("First Name= " + personData[0] + ", Last Name= " + personData[1] + ", Address=" + personData[2] + ", City=" + personData[3] + ", State= " + personData[4] + ", Zip Code= " + personData[5] + ", Phone Number= " + personData[6]);
@@ -27,7 +26,6 @@ public class Utils {
         String updateLine, newAddress = "", newString = "", splitBy = ",", oldContent = "", newCity = "", newState = "", newZipcode = "", newPhone = "";
         //Open AddressBook.csv
         BufferedReader reader = new BufferedReader(new FileReader("src/CSVFiles/AddressBook.csv"));
-
         System.out.println("Enter the Person Serial you want to Edit");
         int lineNumber = readIn.nextInt();
         //Iterate over all lines and create one string of all
@@ -91,7 +89,6 @@ public class Utils {
         String updateLine = "", newString = "", splitBy = ",", oldContent = "", nextLine = "", line = "nope";
         //Open AddressBook.csv
         BufferedReader reader = new BufferedReader(new FileReader("src/CSVFiles/AddressBook.csv"));
-
         System.out.println("Enter the Person Serial you want to Delete");
         int lineNumber = readIn.nextInt();
         //Iterate over all lines and create one string of all
@@ -132,7 +129,6 @@ public class Utils {
         try {
             //parsing a CSV file into BufferedReader class constructor  
             BufferedReader bufferead = new BufferedReader(new FileReader("src/CSVFiles/AddressBook.csv"));
-
             while ((line = bufferead.readLine()) != null) {
                 String[] personData = line.split(splitBy); // use comma as separator  
                 if (personData[0].equals(firstName) && personData[1].equals(lastName)) {
@@ -140,8 +136,7 @@ public class Utils {
                     return true;
                 }
             }
-
-        } catch (IOException e) {
+         } catch (IOException e) {
             e.printStackTrace();
         }
         return false;
@@ -156,13 +151,9 @@ public class Utils {
                 break;
             }
         }
-
-        String line = "";
+         String line = "";
         String cvsSplitBy = ",";
         List < List < String >> personData = new ArrayList < > ();
-        switch (option) {
-
-        }
         try (BufferedReader br = new BufferedReader(new FileReader("src/CSVFiles/AddressBook.csv"))) {
             while ((line = br.readLine()) != null) {
                 personData.add(Arrays.asList(line.split(cvsSplitBy)));
@@ -180,8 +171,7 @@ public class Utils {
             for (List < String > rowData: personData) {
                 System.out.println(rowData);
             }
-
-        } catch (IOException e) {
+         } catch (IOException e) {
             e.printStackTrace();
         }
         System.out.println("Sorted");
@@ -195,12 +185,10 @@ public class Utils {
         try {
             //parsing a CSV file into BufferedReader class constructor  
             BufferedReader bufferead = new BufferedReader(new FileReader("src/CSVFiles/AddressBook.csv"));
-
             while ((line = bufferead.readLine()) != null) {
                 String[] personData = line.split(splitBy); // use comma as separator  
                 viewPersonByCity.put(personData[3], personData[0] + " " + personData[1]);
                 viewPersonByState.put(personData[4], personData[0] + " " + personData[1]);
-
             }
             System.out.println(viewPersonByCity);
             System.out.println(viewPersonByState);
@@ -208,15 +196,15 @@ public class Utils {
             e.printStackTrace();
         }
         System.out.println("1. View Person By State \n2. View Person By City");
-        int choice = readIn.nextInt();
-        if (choice == 1) {
+        int option = readIn.nextInt();
+        if (option == 1) {
             for (Enumeration i = viewPersonByState.keys(); i.hasMoreElements();) {
                 String keys = i.nextElement().toString();
                 System.out.print("State : " + keys);
                 System.out.println(" Person : " + viewPersonByState.get(keys));
             }
         }
-        if (choice == 2) {
+        if (option == 2) {
             for (Enumeration i = viewPersonByCity.keys(); i.hasMoreElements();) {
                 String keys = i.nextElement().toString();
                 System.out.print("City : " + keys);
@@ -226,4 +214,43 @@ public class Utils {
             System.out.println("Invalid");
     }
 
+    public void searchPerson() {
+
+        int option = 0, flag = 0;
+        String key = "";
+        String line = "";
+        String splitBy = ",";
+        System.out.println("1. Search By City \n2. Search by State");
+        switch (readIn.nextInt()) {
+            case 1:
+                System.out.println("Enter the City");
+                key = readIn.next();
+                option = 3;
+                break;
+            case 2:
+                System.out.println("Enter the State");
+                key = readIn.next();
+                option = 4;
+                break;
+            default:
+                System.out.println("Invalid");
+                break;
+        }
+        try {
+            //parsing a CSV file into BufferedReader class constructor  
+            BufferedReader bufferead = new BufferedReader(new FileReader("src/CSVFiles/AddressBook.csv"));
+            System.out.println("People in " + key + ":");
+            while ((line = bufferead.readLine()) != null) {
+                String[] personData = line.split(splitBy); // use comma as separator  
+                if (personData[option].equals(key)) {
+                    System.out.println(personData[0] + " " + personData[1]);
+                    flag = 1;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (flag == 0)
+            System.out.println("None");
+    }
 }
